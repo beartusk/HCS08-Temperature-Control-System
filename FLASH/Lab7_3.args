@@ -1,0 +1,12 @@
+"$(ProjDirPath)/Project_Settings/Linker_Files/Project.prm"
+-M
+-ViewHidden
+-WmsgFob"%f%e:%l:%k:%d %m\n" 
+-Add("$(ProjDirPath)/FLASH/Sources/ADC_asm.obj"
+"$(ProjDirPath)/FLASH/Sources/Date_Time_asm.obj"
+"$(ProjDirPath)/FLASH/Sources/LCD_asm.obj"
+"$(ProjDirPath)/FLASH/Sources/MCUinit_asm.obj"
+"$(ProjDirPath)/FLASH/Sources/PWM_asm.obj"
+"$(ProjDirPath)/FLASH/Sources/RTC_TEC_asm.obj"
+"$(ProjDirPath)/FLASH/Sources/keypad_asm.obj"
+"$(ProjDirPath)/FLASH/Sources/main_asm.obj")

@@ -1,0 +1,1203 @@
+*** EVALUATION ***
+PROGRAM "Lab7_3.abs"
+
+*********************************************************************************************
+TARGET SECTION
+---------------------------------------------------------------------------------------------
+Processor   : Freescale HC08
+Memory Model: SMALL
+File Format : ELF\DWARF 2.0
+Linker      : SmartLinker V-5.0.50 Build 13087, Mar 29 2013
+
+*********************************************************************************************
+FILE SECTION
+---------------------------------------------------------------------------------------------
+ADC_asm.obj                             Model: SMALL,         Lang: Assembler
+LCD_asm.obj                             Model: SMALL,         Lang: Assembler
+MCUinit_asm.obj                         Model: SMALL,         Lang: Assembler
+RTC_TEC_asm.obj                         Model: SMALL,         Lang: Assembler
+keypad_asm.obj                          Model: SMALL,         Lang: Assembler
+main_asm.obj                            Model: SMALL,         Lang: Assembler
+
+*********************************************************************************************
+STARTUP SECTION
+---------------------------------------------------------------------------------------------
+Entry point: 0xE000 (_Startup)
+
+*********************************************************************************************
+SECTION-ALLOCATION SECTION
+Section Name                    Size  Type     From       To       Segment
+---------------------------------------------------------------------------------------------
+.init                           1404     R     0xE000     0xE57B   ROM
+MY_ZEROPAGE                       37   R/W       0x60       0x84   Z_RAM
+ADC_asm__ORG00001                 28   R/W       0x90       0xAB   .absSeg0
+MCUinit_asm__ORG00001              1     R     0xFFBD     0xFFBD   .absSeg1
+MCUinit_asm__ORG00002              1     R     0xFFBF     0xFFBF   .absSeg2
+MCUinit_asm__ORG00003             46     R     0xFFD0     0xFFFD   .absSeg3
+RTC_TEC_asm__ORG00001             15   R/W      0x110      0x11E   .absSeg4
+MyCode                          4484     R     0xE57C     0xF6FF   ROM
+CODE_SECT                        350     R     0xF700     0xF85D   ROM
+.stack                            64   R/W      0x100      0x13F   RAM
+.vectSeg5_vect                     2     R     0xFFFE     0xFFFF   .vectSeg5
+
+Summary of section sizes per section type:
+READ_ONLY (R):        1890 (dec:     6288)
+READ_WRITE (R/W):       90 (dec:      144)
+
+*********************************************************************************************
+VECTOR-ALLOCATION SECTION
+    Address     InitValue   InitFunction
+---------------------------------------------------------------------------------------------
+     0xFFFE        0xE000   _Startup
+
+*********************************************************************************************
+OBJECT-ALLOCATION SECTION
+     Name               Module                 Addr   hSize   dSize     Ref    Section   RLIB
+---------------------------------------------------------------------------------------------
+MODULE:                 -- ADC_asm.obj --
+- PROCEDURES:
+     ADC_init                                  E57C      13      19       0   MyCode      
+     pwm_read                                  E58F      20      32       0   MyCode      
+     pwm_write                                 E5AF      22      34       1   MyCode      
+     date_time_write_init                      E5D1      ED     237       0   MyCode      
+     seconds_write                             E6BE      17      23       2   MyCode      
+     seconds_temp_write                        E6D5      31      49       2   MyCode      
+     temp_read                                 E706      45      69       0   MyCode      
+     ext_conv                                  E74B      4A      74       1   MyCode      
+     int_conv                                  E795      35      53       1   MyCode      
+     temp_write                                E7CA      32      50       5   MyCode      
+     check_coco                                E7FC      19      25       3   MyCode      
+     NOSUB1                                    E815       2       2       0   MyCode      
+     MPRSIGN                                   E817       3       3       0   MyCode      
+     TST2                                      E81A       D      13       0   MyCode      
+     NOSUB2                                    E827       2       2       0   MyCode      
+     MPCSIGN                                   E829       3       3       0   MyCode      
+     MLTSUB                                    E82C       C      12       0   MyCode      
+     COMP                                      E838       D      13       0   MyCode      
+     TWSCMP                                    E845       9       9       0   MyCode      
+     DONE                                      E84E       6       6       0   MyCode      
+     UMULT16                                   E854      20      32       2   MyCode      
+     NOINCA                                    E874      1F      31       0   MyCode      
+     NOINCB                                    E893      2A      42       0   MyCode      
+     loop1                                     E8BD       8       8       0   MyCode      
+     loop2                                     E8C5       8       8       0   MyCode      
+     done_loop                                 E8CD       1       1       0   MyCode      
+- VARIABLES:
+     cur_counts                                  90       1       1       0   .text       
+     hundreds                                    91       1       1       2   .text       
+     tens                                        92       1       1      15   .text       
+     ones                                        93       1       1      15   .text       
+     tenths                                      94       1       1       3   .text       
+     INTACC1                                     95       4       4       0   .text       
+     INTACC2                                     99       4       4       0   .text       
+     ext_temp                                    9D       2       2       0   .text       
+     total_temp                                  9F       2       2       0   .text       
+     count_temp                                  A1       2       2       0   .text       
+     final_temp                                  A3       2       2      16   .text       
+     cntr1                                       A5       1       1       0   .text       
+     cntr2                                       A6       1       1       0   .text       
+     n                                           A7       1       1      44   .text       
+     m                                           A8       1       1       0   .text       
+     state                                       A9       1       1      21   .text       
+     pwm                                         AA       1       1       0   .text       
+     data                                        AB       1       1       0   .text       
+- LABELS:
+     __SEG_END_SSTACK                           140       0       0       1               
+MODULE:                 -- LCD_asm.obj --
+- PROCEDURES:
+     init_LCD                                  E8CE      AE     174       2   MyCode      
+     clear_display                             E97C      19      25      17   MyCode      
+     reset_cursor                              E995      19      25      10   MyCode      
+     second_line                               E9AE      19      25      23   MyCode      
+     lcd_pwm                                   E9C7      32      50       1   MyCode      
+     write                                     E9F9      15      21      73   MyCode      
+     write_Enter_Tset                          EA0E      22      34       3   MyCode      
+     write_Enter_10_40C                        EA30      28      40       4   MyCode      
+     write_Heating_to                          EA58      22      34       2   MyCode      
+     write_Cooling_to                          EA7A      22      34       2   MyCode      
+     write_A_TEC_off                           EA9C      16      22       1   MyCode      
+     write_TEC_function                        EAB2      28      40       2   MyCode      
+     write_1_Heat_0_Cool                       EADA      2B      43       2   MyCode      
+     write_Time_in_seconds                     EB05      31      49       2   MyCode      
+     write_Enter_0_180                         EB36      25      37       2   MyCode      
+     write_Heating_t                           EB5B      1F      31       1   MyCode      
+     write_Cooling_t                           EB7A      1F      31       1   MyCode      
+     write_B_TEC_off                           EB99      16      22       1   MyCode      
+     write_Target_Temp                         EBAF      25      37       1   MyCode      
+     write_Holding_at                          EBD4      1F      31       1   MyCode      
+     write_overtemp                            EBF3      31      49       1   MyCode      
+     write_error                               EC24      12      18       4   MyCode      
+     write_Mode_ABC                            EC36      25      37       1   MyCode      
+     write_TEC_state                           EC5B      31      49       2   MyCode      
+     write_off                                 EC8C       D      13       2   MyCode      
+     write_heat                                EC99      10      16       0   MyCode      
+     write_cool                                ECA9      10      16       0   MyCode      
+     write_T92                                 ECB9      16      22      13   MyCode      
+     write_KatT                                ECCF       D      13       2   MyCode      
+     write_month                               ECDC      13      19       0   MyCode      
+     write_date                                ECEF      10      16       0   MyCode      
+     write_year                                ECFF      10      16       0   MyCode      
+     write_hour                                ED0F      10      16       0   MyCode      
+     write_min                                 ED1F      19      25       0   MyCode      
+     write_sec                                 ED38      19      25       0   MyCode      
+     write_req                                 ED51      19      25       0   MyCode      
+     write_actual                              ED6A      22      34       0   MyCode      
+     write_entern                              ED8C      1C      28       0   MyCode      
+     write_dash                                EDA8       A      10       4   MyCode      
+     write_period                              EDB2       A      10       2   MyCode      
+     write_space                               EDBC       A      10      37   MyCode      
+     write_equal                               EDC6       A      10      11   MyCode      
+     write_colon                               EDD0       A      10       9   MyCode      
+     write_slash                               EDDA       A      10       2   MyCode      
+     write_at                                  EDE4       A      10       1   MyCode      
+     write_comma                               EDEE       A      10       3   MyCode      
+     write_question_mark                       EDF8       A      10       5   MyCode      
+     write_pound                               EE02       A      10       1   MyCode      
+     write_star                                EE0C       A      10       1   MyCode      
+     write_a                                   EE16      14      20      10   MyCode      
+     write_c                                   EE2A       A      10       5   MyCode      
+     write_d                                   EE34       A      10       4   MyCode      
+     write_e                                   EE3E       A      10      21   MyCode      
+     write_f                                   EE48       A      10       3   MyCode      
+     write_g                                   EE52       A      10       6   MyCode      
+     write_h                                   EE5C       A      10       2   MyCode      
+     write_i                                   EE66      1E      30       9   MyCode      
+     write_l                                   EE84       A      10       6   MyCode      
+     write_m                                   EE8E       A      10       2   MyCode      
+     write_n                                   EE98       A      10      17   MyCode      
+     write_o                                   EEA2       A      10      19   MyCode      
+     write_p                                   EEAC       A      10       1   MyCode      
+     write_q                                   EEB6       A      10       1   MyCode      
+     write_r                                   EEC0       A      10      10   MyCode      
+     write_s                                   EECA       A      10       6   MyCode      
+     write_t                                   EED4       A      10      24   MyCode      
+     write_u                                   EEDE      3C      60       6   MyCode      
+     write_A                                   EF1A       A      10       4   MyCode      
+     write_B                                   EF24       A      10       3   MyCode      
+     write_C                                   EF2E       A      10      11   MyCode      
+     write_D                                   EF38       A      10       2   MyCode      
+     write_E                                   EF42       A      10      11   MyCode      
+     write_F                                   EF4C      14      20       2   MyCode      
+     write_H                                   EF60      1E      30       5   MyCode      
+     write_K                                   EF7E      14      20       1   MyCode      
+     write_M                                   EF92      14      20       4   MyCode      
+     write_O                                   EFA6       A      10       4   MyCode      
+     write_P                                   EFB0      14      20       1   MyCode      
+     write_R                                   EFC4       A      10       1   MyCode      
+     write_Rr                                  EFC4       0       0       1   MyCode      
+     write_S                                   EFCE       A      10       1   MyCode      
+     write_T                                   EFD8      14      20      12   MyCode      
+     write_V                                   EFEC      1E      30       1   MyCode      
+     write_Y                                   F00A      14      20       1   MyCode      
+     write_0                                   F01E       A      10       6   MyCode      
+     write_1                                   F028       A      10       4   MyCode      
+     write_2                                   F032       A      10       2   MyCode      
+     write_3                                   F03C       A      10       1   MyCode      
+     write_4                                   F046       A      10       2   MyCode      
+     write_5                                   F050       A      10       1   MyCode      
+     write_6                                   F05A       A      10       1   MyCode      
+     write_7                                   F064       A      10       1   MyCode      
+     write_8                                   F06E       A      10       2   MyCode      
+     write_9                                   F078       A      10       2   MyCode      
+     lcd_date_time                             F082      3F      63       8   MyCode      
+     lcd_temp_mark                             F0C1      3F      63       5   MyCode      
+     lcd_temp                                  F100      5E      94       2   MyCode      
+     lcd_temp_92                               F15E      6A     106       1   MyCode      
+     EN_clock                                  F1C8      14      20      46   MyCode      
+     bus_output                                F1DC       5       5       1   MyCode      
+     loop1                                     F1E1       0       0       0   MyCode      
+     fivems_delay                              F1E1       C      12      50   MyCode      
+     loop2                                     F1ED       C      12       0   MyCode      
+     done_loop                                 F1F9       1       1       0   MyCode      
+- VARIABLES:
+     cntr1                                       60       1       1       4   MY_ZEROPAGE 
+     cntr2                                       61       1       1       4   MY_ZEROPAGE 
+     highbyte                                    62       1       1      74   MY_ZEROPAGE 
+     lowbyte                                     63       1       1      74   MY_ZEROPAGE 
+MODULE:                 -- MCUinit_asm.obj --
+- PROCEDURES:
+     MCU_init                                  F700      26      38       1   CODE_SECT   
+     SkipTrim                                  F726      29      41       0   CODE_SECT   
+     isrVtpmovf                                F74F       D      13       1   CODE_SECT   
+     C_method                                  F75C      35      53       1   CODE_SECT   
+     C_do_nothing                              F791       7       7       0   CODE_SECT   
+     C_cooldown                                F798       7       7       0   CODE_SECT   
+     C_heatup                                  F79F       7       7       0   CODE_SECT   
+     overheat_check                            F7A6      20      32       0   CODE_SECT   
+     C_method_jump                             F7C6       3       3       0   CODE_SECT   
+     toggle                                    F7C9      10      16       0   CODE_SECT   
+     toggle1                                   F7D9       6       6       0   CODE_SECT   
+     toggle2                                   F7DF       9       9       0   CODE_SECT   
+     toggle_on                                 F7E8       D      13       0   CODE_SECT   
+     toggle_on_2                               F7F5      21      33       0   CODE_SECT   
+     heat                                      F816       D      13       0   CODE_SECT   
+     cool                                      F823       D      13       0   CODE_SECT   
+     toggle_off                                F830       D      13       0   CODE_SECT   
+     toggle_off_2                              F83D      21      33       0   CODE_SECT   
+- VARIABLES:
+     VAR00001                                  FFBD       1       1       0   .text       
+     VAR00002                                  FFBF       1       1       0   .text       
+     VAR00003                                  FFD0       2       2       0   .text       
+     VAR00004                                  FFD2       2       2       0   .text       
+     VAR00005                                  FFD4       2       2       0   .text       
+     VAR00006                                  FFD6       2       2       0   .text       
+     VAR00007                                  FFD8       2       2       0   .text       
+     VAR00008                                  FFDA       2       2       0   .text       
+     VAR00009                                  FFDC       2       2       0   .text       
+     VAR00010                                  FFDE       2       2       0   .text       
+     VAR00011                                  FFE0       2       2       0   .text       
+     VAR00012                                  FFE2       2       2       0   .text       
+     VAR00013                                  FFE4       2       2       0   .text       
+     VAR00014                                  FFE6       2       2       0   .text       
+     VAR00015                                  FFE8       2       2       0   .text       
+     VAR00016                                  FFEA       2       2       0   .text       
+     VAR00017                                  FFEC       2       2       0   .text       
+     VAR00018                                  FFEE       2       2       0   .text       
+     VAR00019                                  FFF0       2       2       0   .text       
+     VAR00020                                  FFF2       2       2       0   .text       
+     VAR00021                                  FFF4       2       2       0   .text       
+     VAR00022                                  FFF6       2       2       0   .text       
+     VAR00023                                  FFF8       2       2       0   .text       
+     VAR00024                                  FFFA       2       2       0   .text       
+     VAR00025                                  FFFC       2       2       0   .text       
+MODULE:                 -- RTC_TEC_asm.obj --
+- PROCEDURES:
+     start_condition                           F1FA       D      13      20   MyCode      
+     Slave_address_w_RTC                       F207       C      12      12   MyCode      
+     Slave_address_r_RTC                       F213       C      12       6   MyCode      
+     Slave_address_w_TEC                       F21F       C      12       1   MyCode      
+     Slave_address_r_TEC                       F22B       C      12       1   MyCode      
+     check_acknowledge                         F237       C      12      23   MyCode      
+     check_not_acknowledge                     F243       B      11       7   MyCode      
+     send_acknowledge                          F24E       9       9       1   MyCode      
+     stop_condition                            F257       6       6      13   MyCode      
+     RTC_write                                 F25D      D5     213       2   MyCode      
+     send_loop_init                            F332       C      12      23   MyCode      
+     send_loop                                 F33E       A      10       0   MyCode      
+     mask_decr                                 F348      11      17       0   MyCode      
+     send_one                                  F359       A      10       0   MyCode      
+     send_zero                                 F363       A      10       0   MyCode      
+     RTC_read                                  F36D      E5     229       7   MyCode      
+     read_data_loop_init                       F452      13      19       8   MyCode      
+     read_data_loop                            F465       B      11       0   MyCode      
+     read_one                                  F470       F      15       0   MyCode      
+     read_zero                                 F47F       F      15       0   MyCode      
+     mask_2_decr                               F48E      13      19       0   MyCode      
+     TEC_read                                  F4A1      33      51      13   MyCode      
+     Convert_LM92_temp                         F4D4      40      64      13   MyCode      
+     TEN_NOP_DELAY                             F514       B      11       1   MyCode      
+- VARIABLES:
+     mask                                       110       1       1       0   .text       
+     mask_2                                     111       1       1       0   .text       
+     send                                       112       1       1       0   .text       
+     seconds                                    113       1       1       9   .text       
+     minutes                                    114       1       1       3   .text       
+     hours                                      115       1       1       2   .text       
+     date                                       116       1       1       2   .text       
+     month                                      117       1       1       2   .text       
+     year                                       118       1       1       2   .text       
+     read_data                                  119       1       1       0   .text       
+     send_data                                  11A       1       1       0   .text       
+     loop_value                                 11B       1       1       0   .text       
+     loop_value_2                               11C       1       1       0   .text       
+     TEMP_MSB                                   11D       1       1       0   .text       
+     TEMP_LSB                                   11E       1       1       0   .text       
+MODULE:                 -- keypad_asm.obj --
+- PROCEDURES:
+     col_read                                  F51F      16      22       4   MyCode      
+     row_input                                 F535       8       8       4   MyCode      
+     row1_input                                F53D       B      11       1   MyCode      
+     row2_input                                F548       B      11       1   MyCode      
+     row3_input                                F553       B      11       1   MyCode      
+     row4_input                                F55E       B      11       1   MyCode      
+     bus_input                                 F569       5       5       1   MyCode      
+     bus_output                                F56E       5       5       5   MyCode      
+     Y2_setup                                  F573       7       7       1   MyCode      
+     Y3_setup                                  F57A       7       7       1   MyCode      
+     read_keypad                               F581      4A      74      40   MyCode      
+     end_keypad                                F5CB       1       1       0   MyCode      
+     row1_check                                F5CC      15      21       1   MyCode      
+     pressA                                    F5E1       C      12       0   MyCode      
+     pressB                                    F5ED       C      12       0   MyCode      
+     pressC                                    F5F9       C      12       0   MyCode      
+     pressD                                    F605       C      12       0   MyCode      
+     row2_check                                F611      15      21       1   MyCode      
+     press3                                    F626       C      12       0   MyCode      
+     press6                                    F632       C      12       0   MyCode      
+     press9                                    F63E       C      12       0   MyCode      
+     presspound                                F64A      11      17       0   MyCode      
+     row3_check                                F65B      15      21       1   MyCode      
+     press2                                    F670       C      12       0   MyCode      
+     press5                                    F67C       C      12       0   MyCode      
+     press8                                    F688       C      12       0   MyCode      
+     press0                                    F694       C      12       0   MyCode      
+     row4_check                                F6A0      15      21       1   MyCode      
+     press1                                    F6B5       C      12       0   MyCode      
+     press4                                    F6C1       C      12       0   MyCode      
+     press7                                    F6CD       C      12       0   MyCode      
+     pressstar                                 F6D9       E      14       0   MyCode      
+     loop2                                     F6E7       0       0       0   MyCode      
+     delay_loop                                F6E7       8       8      19   MyCode      
+     loop3                                     F6EF       8       8       0   MyCode      
+     loop4                                     F6F7       8       8       0   MyCode      
+     done_loop                                 F6FF       1       1       0   MyCode      
+- VARIABLES:
+     cntr2                                       64       1       1       3   MY_ZEROPAGE 
+     cntr3                                       65       1       1       3   MY_ZEROPAGE 
+     cntr4                                       66       1       1       3   MY_ZEROPAGE 
+     update                                      67       1       1       3   MY_ZEROPAGE 
+     col_mask                                    68       1       1       2   MY_ZEROPAGE 
+     col1                                        69       1       1       5   MY_ZEROPAGE 
+     col2                                        6A       1       1       5   MY_ZEROPAGE 
+     col3                                        6B       1       1       5   MY_ZEROPAGE 
+     col4                                        6C       1       1       5   MY_ZEROPAGE 
+     press_pound                                 6D       1       1      23   MY_ZEROPAGE 
+MODULE:                 -- main_asm.obj --
+- PROCEDURES:
+     _Startup                                  E000      38      56       0   .init       
+     main                                      E000       0       0       0   .init       
+     mainLoop                                  E038      3D      61       1   .init       
+     B_select1                                 E075       3       3       0   .init       
+     C_select1                                 E078       3       3       0   .init       
+     A_select                                  E07B      34      52       0   .init       
+     A_error                                   E0AF      37      55       0   .init       
+     A_keypad_errorcheck                       E0E6      13      19       4   .init       
+     A_calc                                    E0F9      19      25       0   .init       
+     A_heat_or_cool                            E112      14      20       0   .init       
+     A_heat                                    E126      35      53       0   .init       
+     A_cool                                    E15B      3B      59       0   .init       
+     A_off1                                    E196       5       5       0   .init       
+     A_off2                                    E19B      1C      28       0   .init       
+     B_select                                  E1B7      2B      43       1   .init       
+     B_error                                   E1E2      2E      46       0   .init       
+     B_time                                    E210      55      85       0   .init       
+     B_time_1dig_send                          E265       3       3       0   .init       
+     B_time_2dig_send                          E268       3       3       0   .init       
+     B_time_3dig_send                          E26B       3       3       0   .init       
+     B_time_error                              E26E      58      88       0   .init       
+     B_time_error_send                         E2C6       2       2       0   .init       
+     B_time_1dig                               E2C8       6       6       1   .init       
+     B_time_2dig                               E2CE       B      11       1   .init       
+     B_time_3dig                               E2D9      1A      26       1   .init       
+     B_heat_or_cool                            E2F3      13      19       0   .init       
+     B_heat                                    E306      2D      45       0   .init       
+     B_cool                                    E333      2D      45       0   .init       
+     B_off                                     E360      16      22       0   .init       
+     B_calc_seconds                            E376       D      13       2   .init       
+     B_seconds_conv                            E383      1D      29       2   .init       
+     C_select                                  E3A0      34      52       1   .init       
+     C_keypad_errorcheck                       E3D4      13      19       4   .init       
+     C_calc                                    E3E7      1C      28       0   .init       
+     C_error                                   E403      37      55       0   .init       
+     C_heat_or_cool                            E43A      15      21       0   .init       
+     C_heat                                    E44F      35      53       0   .init       
+     C_cool                                    E484      35      53       0   .init       
+     C_off1                                    E4B9       5       5       0   .init       
+     C_off2                                    E4BE       F      15       0   .init       
+     Restart                                   E4CD       F      15       0   .init       
+     Run_Pre                                   E4DC      12      18       0   .init       
+     Run                                       E4EE       A      10       0   .init       
+     clearupdate                               E4F8       5       5       0   .init       
+     update_no                                 E4FD      2C      44       0   .init       
+     update_yes                                E529      31      49       0   .init       
+     delay_loop2                               E55A       8       8       6   .init       
+     loop2                                     E55A       0       0       0   .init       
+     loop3                                     E562       8       8       0   .init       
+     loop4                                     E56A       8       8       0   .init       
+     done_loop                                 E572       A      10       0   .init       
+- VARIABLES:
+     onoff                                       6E       1       1       6   MY_ZEROPAGE 
+     cntr1                                       6F       1       1       4   MY_ZEROPAGE 
+     PTBD_TEMP                                   70       1       1       3   MY_ZEROPAGE 
+     PTBDD_TEMP                                  71       1       1       3   MY_ZEROPAGE 
+     debounce                                    72       1       1       0   MY_ZEROPAGE 
+     previous_state                              73       1       1       2   MY_ZEROPAGE 
+     press_value                                 74       1       1       2   MY_ZEROPAGE 
+     temp_ones                                   75       1       1      11   MY_ZEROPAGE 
+     temp_tens                                   76       1       1      11   MY_ZEROPAGE 
+     A_temp                                      77       1       1       6   MY_ZEROPAGE 
+     A_tens                                      78       1       1       0   MY_ZEROPAGE 
+     A_ones                                      79       1       1       0   MY_ZEROPAGE 
+     B_time_h                                    7A       1       1       5   MY_ZEROPAGE 
+     B_time_t                                    7B       1       1       4   MY_ZEROPAGE 
+     B_time_o                                    7C       1       1       3   MY_ZEROPAGE 
+     B_time_total                                7D       1       1       8   MY_ZEROPAGE 
+     B_state                                     7E       1       1       3   MY_ZEROPAGE 
+     cntr5                                       7F       1       1       4   MY_ZEROPAGE 
+     cntr6                                       80       1       1       4   MY_ZEROPAGE 
+     cntr7                                       81       1       1       4   MY_ZEROPAGE 
+     seconds_temp                                82       1       1       9   MY_ZEROPAGE 
+     C_temp                                      83       1       1       7   MY_ZEROPAGE 
+     C_Hold                                      84       1       1       3   MY_ZEROPAGE 
+
+*********************************************************************************************
+MODULE STATISTIC
+  Name                                      Data   Code  Const
+---------------------------------------------------------------------------------------------
+  ADC_asm.obj                                 28    850      0
+  LCD_asm.obj                                  4   2348      0
+  MCUinit_asm.obj                              0    350     48
+  RTC_TEC_asm.obj                             15    805      0
+  keypad_asm.obj                              10    481      0
+  main_asm.obj                                23   1404      0
+  other                                       64      2      0
+
+*********************************************************************************************
+SECTION USE IN OBJECT-ALLOCATION SECTION
+---------------------------------------------------------------------------------------------
+SECTION: ".text"
+  cur_counts hundreds tens ones tenths INTACC1 INTACC2 ext_temp total_temp 
+  count_temp final_temp cntr1 cntr2 n m state pwm data mask mask_2 send seconds 
+  minutes hours date month year read_data send_data loop_value loop_value_2 
+  TEMP_MSB TEMP_LSB VAR00001 VAR00002 VAR00003 VAR00004 VAR00005 VAR00006 
+  VAR00007 VAR00008 VAR00009 VAR00010 VAR00011 VAR00012 VAR00013 VAR00014 
+  VAR00015 VAR00016 VAR00017 VAR00018 VAR00019 VAR00020 VAR00021 VAR00022 
+  VAR00023 VAR00024 VAR00025 
+SECTION: ".init"
+  main _Startup mainLoop B_select1 C_select1 A_select A_error 
+  A_keypad_errorcheck A_calc A_heat_or_cool A_heat A_cool A_off1 A_off2 
+  B_select B_error B_time B_time_1dig_send B_time_2dig_send B_time_3dig_send 
+  B_time_error B_time_error_send B_time_1dig B_time_2dig B_time_3dig 
+  B_heat_or_cool B_heat B_cool B_off B_calc_seconds B_seconds_conv C_select 
+  C_keypad_errorcheck C_calc C_error C_heat_or_cool C_heat C_cool C_off1 C_off2 
+  Restart Run_Pre Run clearupdate update_no update_yes loop2 delay_loop2 loop3 
+  loop4 done_loop 
+SECTION: "MY_ZEROPAGE"
+  cntr1 cntr2 highbyte lowbyte cntr2 cntr3 cntr4 update col_mask col1 col2 
+  col3 col4 press_pound onoff cntr1 PTBD_TEMP PTBDD_TEMP debounce 
+  previous_state press_value temp_ones temp_tens A_temp A_tens A_ones B_time_h 
+  B_time_t B_time_o B_time_total B_state cntr5 cntr6 cntr7 seconds_temp C_temp 
+  C_Hold 
+SECTION: "MyCode"
+  ADC_init pwm_read pwm_write date_time_write_init seconds_write 
+  seconds_temp_write temp_read ext_conv int_conv temp_write check_coco NOSUB1 
+  MPRSIGN TST2 NOSUB2 MPCSIGN MLTSUB COMP TWSCMP DONE UMULT16 NOINCA NOINCB 
+  loop1 loop2 done_loop init_LCD clear_display reset_cursor second_line lcd_pwm 
+  write write_Enter_Tset write_Enter_10_40C write_Heating_to write_Cooling_to 
+  write_A_TEC_off write_TEC_function write_1_Heat_0_Cool write_Time_in_seconds 
+  write_Enter_0_180 write_Heating_t write_Cooling_t write_B_TEC_off 
+  write_Target_Temp write_Holding_at write_overtemp write_error write_Mode_ABC 
+  write_TEC_state write_off write_heat write_cool write_T92 write_KatT 
+  write_month write_date write_year write_hour write_min write_sec write_req 
+  write_actual write_entern write_dash write_period write_space write_equal 
+  write_colon write_slash write_at write_comma write_question_mark write_pound 
+  write_star write_a write_c write_d write_e write_f write_g write_h write_i 
+  write_l write_m write_n write_o write_p write_q write_r write_s write_t 
+  write_u write_A write_B write_C write_D write_E write_F write_H write_K 
+  write_M write_O write_P write_Rr write_R write_S write_T write_V write_Y 
+  write_0 write_1 write_2 write_3 write_4 write_5 write_6 write_7 write_8 
+  write_9 lcd_date_time lcd_temp_mark lcd_temp lcd_temp_92 EN_clock bus_output 
+  fivems_delay loop1 loop2 done_loop start_condition Slave_address_w_RTC 
+  Slave_address_r_RTC Slave_address_w_TEC Slave_address_r_TEC check_acknowledge 
+  check_not_acknowledge send_acknowledge stop_condition RTC_write 
+  send_loop_init send_loop mask_decr send_one send_zero RTC_read 
+  read_data_loop_init read_data_loop read_one read_zero mask_2_decr TEC_read 
+  Convert_LM92_temp TEN_NOP_DELAY col_read row_input row1_input row2_input 
+  row3_input row4_input bus_input bus_output Y2_setup Y3_setup read_keypad 
+  end_keypad row1_check pressA pressB pressC pressD row2_check press3 press6 
+  press9 presspound row3_check press2 press5 press8 press0 row4_check press1 
+  press4 press7 pressstar delay_loop loop2 loop3 loop4 done_loop 
+SECTION: "CODE_SECT"
+  MCU_init SkipTrim isrVtpmovf C_method C_do_nothing C_cooldown C_heatup 
+  overheat_check C_method_jump toggle toggle1 toggle2 toggle_on toggle_on_2 
+  heat cool toggle_off toggle_off_2 
+
+*********************************************************************************************
+OBJECT LIST SORTED BY ADDRESS
+     Name                                      Addr   hSize   dSize     Ref    Section   RLIB
+---------------------------------------------------------------------------------------------
+     cntr1                                       60       1       1       4   MY_ZEROPAGE 
+     cntr2                                       61       1       1       4   MY_ZEROPAGE 
+     highbyte                                    62       1       1      74   MY_ZEROPAGE 
+     lowbyte                                     63       1       1      74   MY_ZEROPAGE 
+     cntr2                                       64       1       1       3   MY_ZEROPAGE 
+     cntr3                                       65       1       1       3   MY_ZEROPAGE 
+     cntr4                                       66       1       1       3   MY_ZEROPAGE 
+     update                                      67       1       1       3   MY_ZEROPAGE 
+     col_mask                                    68       1       1       2   MY_ZEROPAGE 
+     col1                                        69       1       1       5   MY_ZEROPAGE 
+     col2                                        6A       1       1       5   MY_ZEROPAGE 
+     col3                                        6B       1       1       5   MY_ZEROPAGE 
+     col4                                        6C       1       1       5   MY_ZEROPAGE 
+     press_pound                                 6D       1       1      23   MY_ZEROPAGE 
+     onoff                                       6E       1       1       6   MY_ZEROPAGE 
+     cntr1                                       6F       1       1       4   MY_ZEROPAGE 
+     PTBD_TEMP                                   70       1       1       3   MY_ZEROPAGE 
+     PTBDD_TEMP                                  71       1       1       3   MY_ZEROPAGE 
+     debounce                                    72       1       1       0   MY_ZEROPAGE 
+     previous_state                              73       1       1       2   MY_ZEROPAGE 
+     press_value                                 74       1       1       2   MY_ZEROPAGE 
+     temp_ones                                   75       1       1      11   MY_ZEROPAGE 
+     temp_tens                                   76       1       1      11   MY_ZEROPAGE 
+     A_temp                                      77       1       1       6   MY_ZEROPAGE 
+     A_tens                                      78       1       1       0   MY_ZEROPAGE 
+     A_ones                                      79       1       1       0   MY_ZEROPAGE 
+     B_time_h                                    7A       1       1       5   MY_ZEROPAGE 
+     B_time_t                                    7B       1       1       4   MY_ZEROPAGE 
+     B_time_o                                    7C       1       1       3   MY_ZEROPAGE 
+     B_time_total                                7D       1       1       8   MY_ZEROPAGE 
+     B_state                                     7E       1       1       3   MY_ZEROPAGE 
+     cntr5                                       7F       1       1       4   MY_ZEROPAGE 
+     cntr6                                       80       1       1       4   MY_ZEROPAGE 
+     cntr7                                       81       1       1       4   MY_ZEROPAGE 
+     seconds_temp                                82       1       1       9   MY_ZEROPAGE 
+     C_temp                                      83       1       1       7   MY_ZEROPAGE 
+     C_Hold                                      84       1       1       3   MY_ZEROPAGE 
+     cur_counts                                  90       1       1       0   .text       
+     hundreds                                    91       1       1       2   .text       
+     tens                                        92       1       1      15   .text       
+     ones                                        93       1       1      15   .text       
+     tenths                                      94       1       1       3   .text       
+     INTACC1                                     95       4       4       0   .text       
+     INTACC2                                     99       4       4       0   .text       
+     ext_temp                                    9D       2       2       0   .text       
+     total_temp                                  9F       2       2       0   .text       
+     count_temp                                  A1       2       2       0   .text       
+     final_temp                                  A3       2       2      16   .text       
+     cntr1                                       A5       1       1       0   .text       
+     cntr2                                       A6       1       1       0   .text       
+     n                                           A7       1       1      44   .text       
+     m                                           A8       1       1       0   .text       
+     state                                       A9       1       1      21   .text       
+     pwm                                         AA       1       1       0   .text       
+     data                                        AB       1       1       0   .text       
+     mask                                       110       1       1       0   .text       
+     mask_2                                     111       1       1       0   .text       
+     send                                       112       1       1       0   .text       
+     seconds                                    113       1       1       9   .text       
+     minutes                                    114       1       1       3   .text       
+     hours                                      115       1       1       2   .text       
+     date                                       116       1       1       2   .text       
+     month                                      117       1       1       2   .text       
+     year                                       118       1       1       2   .text       
+     read_data                                  119       1       1       0   .text       
+     send_data                                  11A       1       1       0   .text       
+     loop_value                                 11B       1       1       0   .text       
+     loop_value_2                               11C       1       1       0   .text       
+     TEMP_MSB                                   11D       1       1       0   .text       
+     TEMP_LSB                                   11E       1       1       0   .text       
+     main                                      E000       0       0       0   .init       
+     _Startup                                  E000      38      56       0   .init       
+     mainLoop                                  E038      3D      61       1   .init       
+     B_select1                                 E075       3       3       0   .init       
+     C_select1                                 E078       3       3       0   .init       
+     A_select                                  E07B      34      52       0   .init       
+     A_error                                   E0AF      37      55       0   .init       
+     A_keypad_errorcheck                       E0E6      13      19       4   .init       
+     A_calc                                    E0F9      19      25       0   .init       
+     A_heat_or_cool                            E112      14      20       0   .init       
+     A_heat                                    E126      35      53       0   .init       
+     A_cool                                    E15B      3B      59       0   .init       
+     A_off1                                    E196       5       5       0   .init       
+     A_off2                                    E19B      1C      28       0   .init       
+     B_select                                  E1B7      2B      43       1   .init       
+     B_error                                   E1E2      2E      46       0   .init       
+     B_time                                    E210      55      85       0   .init       
+     B_time_1dig_send                          E265       3       3       0   .init       
+     B_time_2dig_send                          E268       3       3       0   .init       
+     B_time_3dig_send                          E26B       3       3       0   .init       
+     B_time_error                              E26E      58      88       0   .init       
+     B_time_error_send                         E2C6       2       2       0   .init       
+     B_time_1dig                               E2C8       6       6       1   .init       
+     B_time_2dig                               E2CE       B      11       1   .init       
+     B_time_3dig                               E2D9      1A      26       1   .init       
+     B_heat_or_cool                            E2F3      13      19       0   .init       
+     B_heat                                    E306      2D      45       0   .init       
+     B_cool                                    E333      2D      45       0   .init       
+     B_off                                     E360      16      22       0   .init       
+     B_calc_seconds                            E376       D      13       2   .init       
+     B_seconds_conv                            E383      1D      29       2   .init       
+     C_select                                  E3A0      34      52       1   .init       
+     C_keypad_errorcheck                       E3D4      13      19       4   .init       
+     C_calc                                    E3E7      1C      28       0   .init       
+     C_error                                   E403      37      55       0   .init       
+     C_heat_or_cool                            E43A      15      21       0   .init       
+     C_heat                                    E44F      35      53       0   .init       
+     C_cool                                    E484      35      53       0   .init       
+     C_off1                                    E4B9       5       5       0   .init       
+     C_off2                                    E4BE       F      15       0   .init       
+     Restart                                   E4CD       F      15       0   .init       
+     Run_Pre                                   E4DC      12      18       0   .init       
+     Run                                       E4EE       A      10       0   .init       
+     clearupdate                               E4F8       5       5       0   .init       
+     update_no                                 E4FD      2C      44       0   .init       
+     update_yes                                E529      31      49       0   .init       
+     loop2                                     E55A       0       0       0   .init       
+     delay_loop2                               E55A       8       8       6   .init       
+     loop3                                     E562       8       8       0   .init       
+     loop4                                     E56A       8       8       0   .init       
+     done_loop                                 E572       A      10       0   .init       
+     ADC_init                                  E57C      13      19       0   MyCode      
+     pwm_read                                  E58F      20      32       0   MyCode      
+     pwm_write                                 E5AF      22      34       1   MyCode      
+     date_time_write_init                      E5D1      ED     237       0   MyCode      
+     seconds_write                             E6BE      17      23       2   MyCode      
+     seconds_temp_write                        E6D5      31      49       2   MyCode      
+     temp_read                                 E706      45      69       0   MyCode      
+     ext_conv                                  E74B      4A      74       1   MyCode      
+     int_conv                                  E795      35      53       1   MyCode      
+     temp_write                                E7CA      32      50       5   MyCode      
+     check_coco                                E7FC      19      25       3   MyCode      
+     NOSUB1                                    E815       2       2       0   MyCode      
+     MPRSIGN                                   E817       3       3       0   MyCode      
+     TST2                                      E81A       D      13       0   MyCode      
+     NOSUB2                                    E827       2       2       0   MyCode      
+     MPCSIGN                                   E829       3       3       0   MyCode      
+     MLTSUB                                    E82C       C      12       0   MyCode      
+     COMP                                      E838       D      13       0   MyCode      
+     TWSCMP                                    E845       9       9       0   MyCode      
+     DONE                                      E84E       6       6       0   MyCode      
+     UMULT16                                   E854      20      32       2   MyCode      
+     NOINCA                                    E874      1F      31       0   MyCode      
+     NOINCB                                    E893      2A      42       0   MyCode      
+     loop1                                     E8BD       8       8       0   MyCode      
+     loop2                                     E8C5       8       8       0   MyCode      
+     done_loop                                 E8CD       1       1       0   MyCode      
+     init_LCD                                  E8CE      AE     174       2   MyCode      
+     clear_display                             E97C      19      25      17   MyCode      
+     reset_cursor                              E995      19      25      10   MyCode      
+     second_line                               E9AE      19      25      23   MyCode      
+     lcd_pwm                                   E9C7      32      50       1   MyCode      
+     write                                     E9F9      15      21      73   MyCode      
+     write_Enter_Tset                          EA0E      22      34       3   MyCode      
+     write_Enter_10_40C                        EA30      28      40       4   MyCode      
+     write_Heating_to                          EA58      22      34       2   MyCode      
+     write_Cooling_to                          EA7A      22      34       2   MyCode      
+     write_A_TEC_off                           EA9C      16      22       1   MyCode      
+     write_TEC_function                        EAB2      28      40       2   MyCode      
+     write_1_Heat_0_Cool                       EADA      2B      43       2   MyCode      
+     write_Time_in_seconds                     EB05      31      49       2   MyCode      
+     write_Enter_0_180                         EB36      25      37       2   MyCode      
+     write_Heating_t                           EB5B      1F      31       1   MyCode      
+     write_Cooling_t                           EB7A      1F      31       1   MyCode      
+     write_B_TEC_off                           EB99      16      22       1   MyCode      
+     write_Target_Temp                         EBAF      25      37       1   MyCode      
+     write_Holding_at                          EBD4      1F      31       1   MyCode      
+     write_overtemp                            EBF3      31      49       1   MyCode      
+     write_error                               EC24      12      18       4   MyCode      
+     write_Mode_ABC                            EC36      25      37       1   MyCode      
+     write_TEC_state                           EC5B      31      49       2   MyCode      
+     write_off                                 EC8C       D      13       2   MyCode      
+     write_heat                                EC99      10      16       0   MyCode      
+     write_cool                                ECA9      10      16       0   MyCode      
+     write_T92                                 ECB9      16      22      13   MyCode      
+     write_KatT                                ECCF       D      13       2   MyCode      
+     write_month                               ECDC      13      19       0   MyCode      
+     write_date                                ECEF      10      16       0   MyCode      
+     write_year                                ECFF      10      16       0   MyCode      
+     write_hour                                ED0F      10      16       0   MyCode      
+     write_min                                 ED1F      19      25       0   MyCode      
+     write_sec                                 ED38      19      25       0   MyCode      
+     write_req                                 ED51      19      25       0   MyCode      
+     write_actual                              ED6A      22      34       0   MyCode      
+     write_entern                              ED8C      1C      28       0   MyCode      
+     write_dash                                EDA8       A      10       4   MyCode      
+     write_period                              EDB2       A      10       2   MyCode      
+     write_space                               EDBC       A      10      37   MyCode      
+     write_equal                               EDC6       A      10      11   MyCode      
+     write_colon                               EDD0       A      10       9   MyCode      
+     write_slash                               EDDA       A      10       2   MyCode      
+     write_at                                  EDE4       A      10       1   MyCode      
+     write_comma                               EDEE       A      10       3   MyCode      
+     write_question_mark                       EDF8       A      10       5   MyCode      
+     write_pound                               EE02       A      10       1   MyCode      
+     write_star                                EE0C       A      10       1   MyCode      
+     write_a                                   EE16      14      20      10   MyCode      
+     write_c                                   EE2A       A      10       5   MyCode      
+     write_d                                   EE34       A      10       4   MyCode      
+     write_e                                   EE3E       A      10      21   MyCode      
+     write_f                                   EE48       A      10       3   MyCode      
+     write_g                                   EE52       A      10       6   MyCode      
+     write_h                                   EE5C       A      10       2   MyCode      
+     write_i                                   EE66      1E      30       9   MyCode      
+     write_l                                   EE84       A      10       6   MyCode      
+     write_m                                   EE8E       A      10       2   MyCode      
+     write_n                                   EE98       A      10      17   MyCode      
+     write_o                                   EEA2       A      10      19   MyCode      
+     write_p                                   EEAC       A      10       1   MyCode      
+     write_q                                   EEB6       A      10       1   MyCode      
+     write_r                                   EEC0       A      10      10   MyCode      
+     write_s                                   EECA       A      10       6   MyCode      
+     write_t                                   EED4       A      10      24   MyCode      
+     write_u                                   EEDE      3C      60       6   MyCode      
+     write_A                                   EF1A       A      10       4   MyCode      
+     write_B                                   EF24       A      10       3   MyCode      
+     write_C                                   EF2E       A      10      11   MyCode      
+     write_D                                   EF38       A      10       2   MyCode      
+     write_E                                   EF42       A      10      11   MyCode      
+     write_F                                   EF4C      14      20       2   MyCode      
+     write_H                                   EF60      1E      30       5   MyCode      
+     write_K                                   EF7E      14      20       1   MyCode      
+     write_M                                   EF92      14      20       4   MyCode      
+     write_O                                   EFA6       A      10       4   MyCode      
+     write_P                                   EFB0      14      20       1   MyCode      
+     write_Rr                                  EFC4       0       0       1   MyCode      
+     write_R                                   EFC4       A      10       1   MyCode      
+     write_S                                   EFCE       A      10       1   MyCode      
+     write_T                                   EFD8      14      20      12   MyCode      
+     write_V                                   EFEC      1E      30       1   MyCode      
+     write_Y                                   F00A      14      20       1   MyCode      
+     write_0                                   F01E       A      10       6   MyCode      
+     write_1                                   F028       A      10       4   MyCode      
+     write_2                                   F032       A      10       2   MyCode      
+     write_3                                   F03C       A      10       1   MyCode      
+     write_4                                   F046       A      10       2   MyCode      
+     write_5                                   F050       A      10       1   MyCode      
+     write_6                                   F05A       A      10       1   MyCode      
+     write_7                                   F064       A      10       1   MyCode      
+     write_8                                   F06E       A      10       2   MyCode      
+     write_9                                   F078       A      10       2   MyCode      
+     lcd_date_time                             F082      3F      63       8   MyCode      
+     lcd_temp_mark                             F0C1      3F      63       5   MyCode      
+     lcd_temp                                  F100      5E      94       2   MyCode      
+     lcd_temp_92                               F15E      6A     106       1   MyCode      
+     EN_clock                                  F1C8      14      20      46   MyCode      
+     bus_output                                F1DC       5       5       1   MyCode      
+     fivems_delay                              F1E1       C      12      50   MyCode      
+     loop1                                     F1E1       0       0       0   MyCode      
+     loop2                                     F1ED       C      12       0   MyCode      
+     done_loop                                 F1F9       1       1       0   MyCode      
+     start_condition                           F1FA       D      13      20   MyCode      
+     Slave_address_w_RTC                       F207       C      12      12   MyCode      
+     Slave_address_r_RTC                       F213       C      12       6   MyCode      
+     Slave_address_w_TEC                       F21F       C      12       1   MyCode      
+     Slave_address_r_TEC                       F22B       C      12       1   MyCode      
+     check_acknowledge                         F237       C      12      23   MyCode      
+     check_not_acknowledge                     F243       B      11       7   MyCode      
+     send_acknowledge                          F24E       9       9       1   MyCode      
+     stop_condition                            F257       6       6      13   MyCode      
+     RTC_write                                 F25D      D5     213       2   MyCode      
+     send_loop_init                            F332       C      12      23   MyCode      
+     send_loop                                 F33E       A      10       0   MyCode      
+     mask_decr                                 F348      11      17       0   MyCode      
+     send_one                                  F359       A      10       0   MyCode      
+     send_zero                                 F363       A      10       0   MyCode      
+     RTC_read                                  F36D      E5     229       7   MyCode      
+     read_data_loop_init                       F452      13      19       8   MyCode      
+     read_data_loop                            F465       B      11       0   MyCode      
+     read_one                                  F470       F      15       0   MyCode      
+     read_zero                                 F47F       F      15       0   MyCode      
+     mask_2_decr                               F48E      13      19       0   MyCode      
+     TEC_read                                  F4A1      33      51      13   MyCode      
+     Convert_LM92_temp                         F4D4      40      64      13   MyCode      
+     TEN_NOP_DELAY                             F514       B      11       1   MyCode      
+     col_read                                  F51F      16      22       4   MyCode      
+     row_input                                 F535       8       8       4   MyCode      
+     row1_input                                F53D       B      11       1   MyCode      
+     row2_input                                F548       B      11       1   MyCode      
+     row3_input                                F553       B      11       1   MyCode      
+     row4_input                                F55E       B      11       1   MyCode      
+     bus_input                                 F569       5       5       1   MyCode      
+     bus_output                                F56E       5       5       5   MyCode      
+     Y2_setup                                  F573       7       7       1   MyCode      
+     Y3_setup                                  F57A       7       7       1   MyCode      
+     read_keypad                               F581      4A      74      40   MyCode      
+     end_keypad                                F5CB       1       1       0   MyCode      
+     row1_check                                F5CC      15      21       1   MyCode      
+     pressA                                    F5E1       C      12       0   MyCode      
+     pressB                                    F5ED       C      12       0   MyCode      
+     pressC                                    F5F9       C      12       0   MyCode      
+     pressD                                    F605       C      12       0   MyCode      
+     row2_check                                F611      15      21       1   MyCode      
+     press3                                    F626       C      12       0   MyCode      
+     press6                                    F632       C      12       0   MyCode      
+     press9                                    F63E       C      12       0   MyCode      
+     presspound                                F64A      11      17       0   MyCode      
+     row3_check                                F65B      15      21       1   MyCode      
+     press2                                    F670       C      12       0   MyCode      
+     press5                                    F67C       C      12       0   MyCode      
+     press8                                    F688       C      12       0   MyCode      
+     press0                                    F694       C      12       0   MyCode      
+     row4_check                                F6A0      15      21       1   MyCode      
+     press1                                    F6B5       C      12       0   MyCode      
+     press4                                    F6C1       C      12       0   MyCode      
+     press7                                    F6CD       C      12       0   MyCode      
+     pressstar                                 F6D9       E      14       0   MyCode      
+     delay_loop                                F6E7       8       8      19   MyCode      
+     loop2                                     F6E7       0       0       0   MyCode      
+     loop3                                     F6EF       8       8       0   MyCode      
+     loop4                                     F6F7       8       8       0   MyCode      
+     done_loop                                 F6FF       1       1       0   MyCode      
+     MCU_init                                  F700      26      38       1   CODE_SECT   
+     SkipTrim                                  F726      29      41       0   CODE_SECT   
+     isrVtpmovf                                F74F       D      13       1   CODE_SECT   
+     C_method                                  F75C      35      53       1   CODE_SECT   
+     C_do_nothing                              F791       7       7       0   CODE_SECT   
+     C_cooldown                                F798       7       7       0   CODE_SECT   
+     C_heatup                                  F79F       7       7       0   CODE_SECT   
+     overheat_check                            F7A6      20      32       0   CODE_SECT   
+     C_method_jump                             F7C6       3       3       0   CODE_SECT   
+     toggle                                    F7C9      10      16       0   CODE_SECT   
+     toggle1                                   F7D9       6       6       0   CODE_SECT   
+     toggle2                                   F7DF       9       9       0   CODE_SECT   
+     toggle_on                                 F7E8       D      13       0   CODE_SECT   
+     toggle_on_2                               F7F5      21      33       0   CODE_SECT   
+     heat                                      F816       D      13       0   CODE_SECT   
+     cool                                      F823       D      13       0   CODE_SECT   
+     toggle_off                                F830       D      13       0   CODE_SECT   
+     toggle_off_2                              F83D      21      33       0   CODE_SECT   
+     VAR00001                                  FFBD       1       1       0   .text       
+     VAR00002                                  FFBF       1       1       0   .text       
+     VAR00003                                  FFD0       2       2       0   .text       
+     VAR00004                                  FFD2       2       2       0   .text       
+     VAR00005                                  FFD4       2       2       0   .text       
+     VAR00006                                  FFD6       2       2       0   .text       
+     VAR00007                                  FFD8       2       2       0   .text       
+     VAR00008                                  FFDA       2       2       0   .text       
+     VAR00009                                  FFDC       2       2       0   .text       
+     VAR00010                                  FFDE       2       2       0   .text       
+     VAR00011                                  FFE0       2       2       0   .text       
+     VAR00012                                  FFE2       2       2       0   .text       
+     VAR00013                                  FFE4       2       2       0   .text       
+     VAR00014                                  FFE6       2       2       0   .text       
+     VAR00015                                  FFE8       2       2       0   .text       
+     VAR00016                                  FFEA       2       2       0   .text       
+     VAR00017                                  FFEC       2       2       0   .text       
+     VAR00018                                  FFEE       2       2       0   .text       
+     VAR00019                                  FFF0       2       2       0   .text       
+     VAR00020                                  FFF2       2       2       0   .text       
+     VAR00021                                  FFF4       2       2       0   .text       
+     VAR00022                                  FFF6       2       2       0   .text       
+     VAR00023                                  FFF8       2       2       0   .text       
+     VAR00024                                  FFFA       2       2       0   .text       
+     VAR00025                                  FFFC       2       2       0   .text       
+
+*********************************************************************************************
+UNUSED-OBJECTS SECTION
+---------------------------------------------------------------------------------------------
+
+*********************************************************************************************
+COPYDOWN SECTION
+---------------------------------------------------------------------------------------------
+
+*********************************************************************************************
+OBJECT-DEPENDENCIES SECTION
+---------------------------------------------------------------------------------------------
+_Startup                  USES __SEG_END_SSTACK onoff init_LCD cntr5 cntr6 
+                                cntr7 state MCU_init 
+mainLoop                  USES C_Hold TEC_read Convert_LM92_temp press_pound 
+                                clear_display second_line write_T92 reset_cursor 
+                                write_Mode_ABC read_keypad n press_value 
+B_select1                 USES B_select 
+C_select1                 USES C_select 
+A_select                  USES press_pound clear_display write_Enter_Tset 
+                                second_line write_Enter_10_40C read_keypad 
+                                A_keypad_errorcheck n temp_tens temp_ones 
+A_error                   USES press_pound clear_display write_Enter_Tset 
+                                write_error second_line write_Enter_10_40C read_keypad 
+                                A_keypad_errorcheck n temp_tens temp_ones 
+A_keypad_errorcheck       USES n 
+A_calc                    USES temp_tens temp_ones A_temp 
+A_heat_or_cool            USES clear_display TEC_read Convert_LM92_temp 
+                                final_temp A_temp 
+A_heat                    USES state reset_cursor write_Heating_to temp_tens 
+                                tens temp_ones ones lcd_temp_mark TEC_read 
+                                Convert_LM92_temp delay_loop2 second_line write_T92 final_temp 
+                                A_temp 
+A_cool                    USES TEC_read Convert_LM92_temp state reset_cursor 
+                                write_Cooling_to temp_tens tens temp_ones ones lcd_temp_mark 
+                                delay_loop2 second_line write_T92 final_temp A_temp 
+A_off1                    USES clear_display 
+A_off2                    USES state TEC_read Convert_LM92_temp reset_cursor 
+                                write_A_TEC_off second_line write_T92 read_keypad 
+B_select                  USES press_pound clear_display write_TEC_function 
+                                second_line write_1_Heat_0_Cool read_keypad n B_state 
+B_error                   USES press_pound clear_display write_TEC_function 
+                                write_error second_line write_1_Heat_0_Cool read_keypad n 
+                                B_state 
+B_time                    USES press_pound clear_display write_Time_in_seconds 
+                                second_line write_Enter_0_180 read_keypad n B_time_h 
+                                B_time_t B_time_o 
+B_time_1dig_send          USES B_time_1dig 
+B_time_2dig_send          USES B_time_2dig 
+B_time_3dig_send          USES B_time_3dig 
+B_time_error              USES press_pound clear_display write_Time_in_seconds 
+                                write_error second_line write_Enter_0_180 read_keypad n 
+                                B_time_h B_time_t B_time_o 
+B_time_1dig               USES B_time_h B_time_total 
+B_time_2dig               USES B_time_h B_time_t B_time_total 
+B_time_3dig               USES B_time_h B_time_o B_time_total B_time_t 
+B_heat_or_cool            USES RTC_write RTC_read clear_display B_state 
+B_heat                    USES state TEC_read Convert_LM92_temp RTC_read 
+                                B_seconds_conv delay_loop2 reset_cursor write_Heating_t 
+                                B_calc_seconds seconds_temp_write second_line write_T92 
+                                B_time_total seconds_temp 
+B_cool                    USES state TEC_read Convert_LM92_temp RTC_read 
+                                B_seconds_conv delay_loop2 reset_cursor write_Cooling_t 
+                                B_calc_seconds seconds_temp_write second_line write_T92 
+                                B_time_total seconds_temp 
+B_off                     USES state clear_display write_B_TEC_off second_line 
+                                write_T92 read_keypad 
+B_calc_seconds            USES minutes seconds_temp 
+B_seconds_conv            USES seconds_temp seconds 
+C_select                  USES press_pound clear_display write_Target_Temp 
+                                second_line write_Enter_10_40C read_keypad 
+                                C_keypad_errorcheck n temp_tens temp_ones 
+C_keypad_errorcheck       USES n 
+C_calc                    USES temp_tens temp_ones C_temp 
+C_error                   USES press_pound clear_display write_Enter_Tset 
+                                write_error second_line write_Enter_10_40C read_keypad 
+                                C_keypad_errorcheck n temp_tens temp_ones 
+C_heat_or_cool            USES clear_display TEC_read Convert_LM92_temp 
+                                final_temp C_temp 
+C_heat                    USES TEC_read Convert_LM92_temp state reset_cursor 
+                                write_Heating_to temp_tens tens temp_ones ones lcd_temp_mark 
+                                delay_loop2 second_line write_T92 final_temp C_temp 
+C_cool                    USES TEC_read Convert_LM92_temp state reset_cursor 
+                                write_Cooling_to temp_tens tens temp_ones ones lcd_temp_mark 
+                                delay_loop2 second_line write_T92 final_temp C_temp 
+C_off1                    USES clear_display 
+C_off2                    USES state C_Hold read_keypad 
+Restart                   USES state previous_state seconds RTC_write 
+Run_Pre                   USES RTC_read seconds update 
+Run                       USES RTC_read seconds 
+clearupdate               USES update 
+update_no                 USES RTC_read reset_cursor write_TEC_state 
+                                second_line write_T92 write_KatT seconds_write read_keypad 
+                                state previous_state 
+update_yes                USES TEC_read Convert_LM92_temp RTC_read 
+                                reset_cursor write_TEC_state second_line write_T92 
+                                write_KatT seconds_write read_keypad update 
+delay_loop2               USES cntr5 
+loop3                     USES cntr6 
+loop4                     USES cntr7 
+done_loop                 USES cntr5 cntr6 cntr7 
+pwm_read                  USES delay_loop check_coco pwm_write 
+pwm_write                 USES lcd_pwm 
+date_time_write_init      USES month lcd_date_time write_slash date year 
+                                second_line hours write_colon minutes seconds lcd_temp 
+seconds_write             USES seconds lcd_date_time 
+seconds_temp_write        USES seconds_temp lcd_temp 
+temp_read                 USES init_LCD ext_conv temp_write write_space 
+                                second_line int_conv read_keypad 
+ext_conv                  USES check_coco UMULT16 
+int_conv                  USES check_coco 
+temp_write                USES lcd_temp_92 
+MLTSUB                    USES UMULT16 
+init_LCD                  USES cntr1 cntr2 fivems_delay bus_output EN_clock 
+clear_display             USES EN_clock fivems_delay 
+reset_cursor              USES EN_clock fivems_delay 
+second_line               USES EN_clock fivems_delay 
+lcd_pwm                   USES tens EN_clock fivems_delay write_period ones 
+write                     USES highbyte EN_clock fivems_delay lowbyte 
+write_Enter_Tset          USES write_E write_n write_t write_e write_r 
+                                write_space write_T write_s write_question_mark 
+write_Enter_10_40C        USES write_E write_n write_t write_e write_r 
+                                write_space write_1 write_0 write_dash write_4 write_C 
+write_Heating_to          USES write_H write_e write_a write_t write_i write_n 
+                                write_g write_space write_o 
+write_Cooling_to          USES write_C write_o write_l write_i write_n write_g 
+                                write_space write_t 
+write_A_TEC_off           USES write_A write_colon write_T write_E write_C 
+                                write_space write_off 
+write_TEC_function        USES write_T write_E write_C write_space write_f 
+                                write_u write_n write_c write_t write_i write_o 
+                                write_question_mark 
+write_1_Heat_0_Cool       USES write_1 write_dash write_H write_e write_a 
+                                write_t write_comma write_space write_0 write_C 
+                                write_o write_l 
+write_Time_in_seconds     USES write_T write_i write_m write_e write_space 
+                                write_n write_s write_c write_o write_d 
+                                write_question_mark 
+write_Enter_0_180         USES write_E write_n write_t write_e write_r 
+                                write_space write_0 write_dash write_1 write_8 
+write_Heating_t           USES write_H write_e write_a write_t write_i write_n 
+                                write_g write_space write_equal 
+write_Cooling_t           USES write_C write_o write_l write_i write_n write_g 
+                                write_space write_t write_equal 
+write_B_TEC_off           USES write_B write_colon write_T write_E write_C 
+                                write_space write_off 
+write_Target_Temp         USES write_T write_a write_r write_g write_e write_t 
+                                write_space write_m write_p write_question_mark 
+write_Holding_at          USES write_H write_o write_l write_d write_i write_n 
+                                write_g write_space write_a write_t 
+write_overtemp            USES write_O write_V write_E write_R write_T write_M 
+                                write_P write_colon write_C write_space write_F 
+write_error               USES write_e write_r write_o write_space 
+write_Mode_ABC            USES write_M write_o write_d write_e write_colon 
+                                write_space write_A write_comma write_B write_C 
+                                write_question_mark 
+write_TEC_state           USES write_T write_E write_C write_space write_s 
+                                write_t write_a write_e write_colon state 
+write_off                 USES write_o write_f write_space 
+write_heat                USES write_h write_e write_a write_t write_space 
+write_cool                USES write_c write_o write_l write_space 
+write_T92                 USES write_T write_9 write_2 write_colon write_space 
+                                temp_write 
+write_KatT                USES write_K write_at write_T write_equal 
+write_month               USES write_M write_o write_n write_t write_h 
+                                write_equal 
+write_date                USES write_D write_a write_t write_e write_equal 
+write_year                USES write_Y write_e write_a write_r write_equal 
+write_hour                USES write_H write_o write_u write_r write_equal 
+write_min                 USES write_M write_i write_n write_u write_t write_e 
+                                write_s write_equal 
+write_sec                 USES write_S write_e write_c write_o write_n write_d 
+                                write_s write_equal 
+write_req                 USES write_Rr write_e write_q write_space write_O 
+                                write_u write_t write_equal 
+write_actual              USES write_A write_c write_t write_u write_a write_l 
+                                write_space write_O write_equal 
+write_entern              USES write_E write_n write_t write_e write_r 
+                                write_space write_colon 
+write_dash                USES highbyte lowbyte write 
+write_period              USES highbyte lowbyte write 
+write_space               USES highbyte lowbyte write 
+write_equal               USES highbyte lowbyte write 
+write_colon               USES highbyte lowbyte write 
+write_slash               USES highbyte lowbyte write 
+write_at                  USES highbyte lowbyte write 
+write_comma               USES highbyte lowbyte write 
+write_question_mark       USES highbyte lowbyte write 
+write_pound               USES highbyte lowbyte write 
+write_star                USES highbyte lowbyte write 
+write_a                   USES highbyte lowbyte write 
+write_c                   USES highbyte lowbyte write 
+write_d                   USES highbyte lowbyte write 
+write_e                   USES highbyte lowbyte write 
+write_f                   USES highbyte lowbyte write 
+write_g                   USES highbyte lowbyte write 
+write_h                   USES highbyte lowbyte write 
+write_i                   USES highbyte lowbyte write 
+write_l                   USES highbyte lowbyte write 
+write_m                   USES highbyte lowbyte write 
+write_n                   USES highbyte lowbyte write 
+write_o                   USES highbyte lowbyte write 
+write_p                   USES highbyte lowbyte write 
+write_q                   USES highbyte lowbyte write 
+write_r                   USES highbyte lowbyte write 
+write_s                   USES highbyte lowbyte write 
+write_t                   USES highbyte lowbyte write 
+write_u                   USES highbyte lowbyte write 
+write_A                   USES highbyte lowbyte write 
+write_B                   USES highbyte lowbyte write 
+write_C                   USES highbyte lowbyte write 
+write_D                   USES highbyte lowbyte write 
+write_E                   USES highbyte lowbyte write 
+write_F                   USES highbyte lowbyte write 
+write_H                   USES highbyte lowbyte write 
+write_K                   USES highbyte lowbyte write 
+write_M                   USES highbyte lowbyte write 
+write_O                   USES highbyte lowbyte write 
+write_P                   USES highbyte lowbyte write 
+write_R                   USES highbyte lowbyte write 
+write_S                   USES highbyte lowbyte write 
+write_T                   USES highbyte lowbyte write 
+write_V                   USES highbyte lowbyte write 
+write_Y                   USES highbyte lowbyte write 
+write_0                   USES highbyte lowbyte write 
+write_1                   USES highbyte lowbyte write 
+write_2                   USES highbyte lowbyte write 
+write_3                   USES highbyte lowbyte write 
+write_4                   USES highbyte lowbyte write 
+write_5                   USES highbyte lowbyte write 
+write_6                   USES highbyte lowbyte write 
+write_7                   USES highbyte lowbyte write 
+write_8                   USES highbyte lowbyte write 
+write_9                   USES highbyte lowbyte write 
+lcd_date_time             USES tens EN_clock fivems_delay ones 
+lcd_temp_mark             USES tens EN_clock fivems_delay ones 
+lcd_temp                  USES hundreds EN_clock fivems_delay tens ones 
+lcd_temp_92               USES tens EN_clock fivems_delay ones write_period 
+                                tenths 
+fivems_delay              USES cntr1 
+loop2                     USES cntr2 
+Slave_address_w_RTC       USES send_loop_init check_acknowledge 
+Slave_address_r_RTC       USES send_loop_init check_acknowledge 
+Slave_address_w_TEC       USES send_loop_init check_acknowledge 
+Slave_address_r_TEC       USES send_loop_init check_acknowledge 
+RTC_write                 USES start_condition Slave_address_w_RTC 
+                                send_loop_init check_acknowledge stop_condition 
+RTC_read                  USES start_condition Slave_address_w_RTC 
+                                send_loop_init check_acknowledge Slave_address_r_RTC 
+                                read_data_loop_init check_not_acknowledge stop_condition 
+read_data_loop            USES TEN_NOP_DELAY 
+TEC_read                  USES start_condition Slave_address_w_TEC 
+                                send_loop_init check_acknowledge Slave_address_r_TEC 
+                                read_data_loop_init send_acknowledge check_not_acknowledge 
+                                stop_condition 
+Convert_LM92_temp         USES final_temp tenths 
+col_read                  USES bus_input Y3_setup col_mask bus_output 
+row_input                 USES Y2_setup 
+row1_input                USES bus_output row_input 
+row2_input                USES bus_output row_input 
+row3_input                USES bus_output row_input 
+row4_input                USES bus_output row_input 
+read_keypad               USES n cntr2 cntr3 cntr4 col_mask col4 col3 col2 
+                                col1 row1_input col_read row1_check row2_input 
+                                row2_check row3_input row3_check row4_input row4_check 
+row1_check                USES col1 col2 col3 col4 
+pressA                    USES write_A n delay_loop 
+pressB                    USES write_B n delay_loop 
+pressC                    USES write_C n delay_loop 
+pressD                    USES write_D n delay_loop 
+row2_check                USES col1 col2 col3 col4 
+press3                    USES n write_3 delay_loop 
+press6                    USES n write_6 delay_loop 
+press9                    USES n write_9 delay_loop 
+presspound                USES write_pound press_pound n delay_loop 
+row3_check                USES col1 col2 col3 col4 
+press2                    USES n write_2 delay_loop 
+press5                    USES n write_5 delay_loop 
+press8                    USES n write_8 delay_loop 
+press0                    USES n write_0 delay_loop 
+row4_check                USES col1 col2 col3 col4 
+press1                    USES n write_1 delay_loop 
+press4                    USES n write_4 delay_loop 
+press7                    USES n write_7 delay_loop 
+pressstar                 USES write_star state delay_loop mainLoop 
+delay_loop                USES cntr2 
+loop3                     USES cntr3 
+loop4                     USES cntr4 
+isrVtpmovf                USES cntr1 
+C_method                  USES clear_display write_Holding_at write_space 
+                                temp_tens tens temp_ones ones lcd_temp_mark second_line 
+                                write_T92 final_temp C_temp state 
+C_do_nothing              USES state 
+C_cooldown                USES state 
+C_heatup                  USES state 
+overheat_check            USES TEC_read Convert_LM92_temp final_temp state 
+                                clear_display write_overtemp second_line write_T92 
+C_method_jump             USES C_method 
+toggle                    USES PTBD_TEMP PTBDD_TEMP 
+toggle1                   USES C_Hold 
+toggle2                   USES onoff 
+toggle_on                 USES state 
+toggle_on_2               USES cntr1 onoff PTBD_TEMP PTBDD_TEMP 
+heat                      USES onoff 
+cool                      USES onoff 
+toggle_off                USES state 
+toggle_off_2              USES cntr1 onoff PTBD_TEMP PTBDD_TEMP 
+
+*********************************************************************************************
+DEPENDENCY TREE
+*********************************************************************************************
+ main and _Startup Group
+ | 
+ +- main                
+ |    
+ +- _Startup            
+    | 
+    +- init_LCD            
+    |  | 
+    |  +- fivems_delay        
+    |  |    
+    |  +- bus_output          
+    |  |    
+    |  +- EN_clock            
+    |       
+    +- MCU_init            
+         
+ _ORG00003           
+ | 
+ +- isrVtpmovf          
+      
+*********************************************************************************************
+STATISTIC SECTION
+---------------------------------------------------------------------------------------------
+
+ExeFile:
+--------
+Number of blocks to be downloaded: 5
+Total size of all blocks to be downloaded: 6288
+
